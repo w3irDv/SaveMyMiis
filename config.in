@@ -1,0 +1,18 @@
+# FFL PATHS
+#path_ffl=/mnt/c/Users/XXXX/cemu/mlc01/usr/save/00050010/1004a200/user/common/db/FFL_ODB.dat
+path_ffl=mii_repos/mii_repo_FFL/FFL_ODB.dat
+path_ffl_Stage=mii_repos/mii_repo_FFL_Stage
+#
+# STADIO
+#path_stadio=/mnt/c/Users/XXXX/repo/cemu/mlc01/usr/save/00050010/1004a200/user/common/stadio.sav
+path_stadio=mii_repos/mii_repo_FFL/stadio.sav
+#
+# RFL PATHS
+#path_rfl=/mnt/c/Users/XXXXXXX/AppData/Roaming/Dolphin Emulator/Wii/shared2/menu/FaceLib/RFL_DB.dat
+path_rfl=mii_repos/mii_repo_RFL/RFL_DB.dat
+path_rfl_Stage=mii_repos/mii_repo_RFL_Stage
+#
+# ACCOUNT PATHS
+#path_account=/mnt/c/Users/XXXX/cemu/mlc01/usr/save/system/act
+path_account=mii_repos/mii_repo_ACCOUNT
+path_account_Stage=mii_repos/mii_repo_ACCOUNT_Stage

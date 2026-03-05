@@ -1,0 +1,11 @@
+# device_hash -> 16 hex digits, 0s will do for CEMU
+device_hash=0x0000000000000000
+
+# author_id -> 16 hex digits,  used for "making locals" Wii U Miis
+author_id=0x0123456789ABCDEF
+
+# mac_address -> 12 hex digits , used for "making locals" Wii Miis
+mac_address=0x0123456789AB
+
+# format-9digits, where format=LU, LEH, ...  Any serial_id value will do
+serial_id=LEH-123456789
