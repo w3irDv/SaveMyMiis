@@ -108,7 +108,7 @@ Offset  | Lenght| Description
 4       |2      |  "5" Major?
 6       |2      |  "1" Minor?
 8       |8      | unknown
-0x10    |8      | Update Timestamp: (10^-8 secs) since 1/1/2010
+0x10    |8      | Update Timestamp: ($10^{-8}$ secs) since 1/1/2010
 0x4000  |0x40 * 3000      | Stadio mii data for each mii
 0x32e00 |0x40 * 12      | Stadio mii data for profile miis
 0x33100 | 8     |  Global Mii number counter, incremented every time a mii is created
