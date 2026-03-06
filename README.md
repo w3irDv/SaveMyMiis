@@ -55,8 +55,10 @@ Usage:
 
     Export / Import copy miis between a repo and its _stage counterpart.
 
-    make_local uses information from file ambient.in, where the values for some console attributes (serial_id, device_hash, mac_adress, ...) should be defined. If you have a mii from the target repo, it is easier to use 'transfer_ownership' task. If not, For Wii, 'mac_adress' is enough. For Wi ¡i U, in CEMU, if you have MiiMaker installed, simplu create one mii and copy the higlighted 16 hex digit output of 'FFL_list' for this mii in to the author_id attribute in ambient.in. 'FFL_make_local' will then transform all miis in local CEMU ones. Remember that this will change Mii Ids and break any game association that depends on the Mii Id value.
 ```
+`make_local` uses information from file `ambient.in`, where the values for some console attributes (serial_id, device_hash, mac_adress, ...) should be defined. If you have a mii from the target repo, it is easier to use `transfer_ownership` task. If not, you will need at least:
+- For Wii/Dolphin: `mac_adress` is enough. Get it from the Internet Settings.
+- For Wii U/CEMU: you will need only `author_id`. If you have MiiMaker installed in CEMU, simply create one mii and copy the higlighted 16 hex digit output of `FFL_list` for this mii in to the `author_id` attribute in ambient.in. `FFL_make_local` will then transform all miis in any repo where you apply this task to local CEMU ones. Remember that this will change Mii Ids and break any game association that depends on the Mii Id value.
 
 
 # Mii DBs format
@@ -81,20 +83,20 @@ Offset  | Lenght| Description
 Length: 0x0BE6C0
  
 
-## caFe  Face Lib FFL  (Wii U) db file
+## caFe  Face Lib / FFL (Wii U) db file
 
 Offset  | Lenght| Description
 --------|-------|-------------
 0       | 4     | 'Magic' header FFFOC
 4       | 4     | Incremental counter (updates)
 8       | 0x5C * 3000  | Array of Mii Data
-0x43628 | 0xA * 50  | Favorite section. Array of favorite miis MiiId
+0x43628 | 0xA * 50  | Favorite section. Array of MiiId of the favorite miis
 0x4383E |2       |CRC16 from 0x0 to 0x4383D 
 
 Lenght: 0x43840
 
 MiiData is described in [HEYimHeroic pages (le format)](https://github.com/HEYimHeroic/mii2studio/blob/master/mii_data_ver3.ksy)
-or here in [WUT pages (be format:)](https://wut.devkitpro.org/miidata_8h_source.html)
+or in [WUT pages (be format)](https://wut.devkitpro.org/miidata_8h_source.html)
 
 ## stadio.sav file
 
@@ -103,10 +105,10 @@ Contains information on how the Miis are shown in in MiiMaker app
 Offset  | Lenght| Description
 --------|-------|-------------
 0       |4      | 'Magic' MSU\0?
-4       |2      |  "5" Version?
-6       |2      |  "1" Subversion?
+4       |2      |  "5" Major?
+6       |2      |  "1" Minor?
 8       |8      | unknown
-0x10    |8      | Update Timestamp: ticks since ...
+0x10    |8      | Update Timestamp: (10^-8 secs) since 1/1/2010
 0x4000  |0x40 * 3000      | Stadio mii data for each mii
 0x32e00 |0x40 * 12      | Stadio mii data for profile miis
 0x33100 | 8     |  Global Mii number counter, incremented every time a mii is created
@@ -118,7 +120,7 @@ Length: 0x34000
 No idea what the rest of the data is used for ...
 
 
-### Studio mii data 
+### Stadio mii data 
 
 Offset  | Lenght| Description
 --------|-------|-------------
