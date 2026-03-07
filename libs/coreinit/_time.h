@@ -8,8 +8,8 @@
 typedef int64_t OSTime;
 inline OSTime OSGetTime() {
 
-    uint64_t osticks_since_2010 = ((uint64_t) MiiUtils::generate_timestamp(2000,1)) * 0x3b46dda;
-    return (osticks_since_2010);
+    uint64_t osticks_since_2000 = ((uint64_t) MiiUtils::generate_timestamp(2000,1)) * 0x3b46dda;
+    return (osticks_since_2000);
 }
 
 typedef int32_t OSTick;
