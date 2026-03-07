@@ -33,10 +33,10 @@ MiiDBOptionsState::MiiDBOptionsState(MiiRepo *mii_repo, MiiProcess::eMiiProcessA
         default:
             switch (mii_repo->db_type) {
                 case MiiRepo::FFL:
-                    db_name = "cafe Face Lib DB";
+                    db_name = "caFe Face Lib";
                     break;
                 case MiiRepo::RFL:
-                    db_name = "Revolution Face Lib DB";
+                    db_name = "Revolution Face Lib";
                     break;
                 default:;
             };

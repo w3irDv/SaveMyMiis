@@ -2103,7 +2103,7 @@ TEST_SUITE("ACCOUNT") {
         test_deinitMiiRepos();
     }
 
-    TEST_CASE("ACCOUNT_appearance") {
+    TEST_CASE("ACCOUNT_transfer_appearance") {
         test_initMiiRepos();
         test_menu_selectRepoAccount_do(_mii_process_shared_state, _menu);
         nav_transferPhysicalAppearanceFFL(_mii_process_shared_state, _menu);
@@ -3159,6 +3159,10 @@ TEST_CASE("FFL_init_init_do") {
 
 TEST_CASE("OSGetTime") {
 
-    printf("%016lx\n",OSGetTime());
+    OSTime osticks = OSGetTime();
+    printf("ticks: %016lx\n",osticks);
+ 
+    printf("years: %ld\n",osticks/3600/24/365);
+ 
 
 }
