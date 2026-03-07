@@ -34,6 +34,7 @@
 
 #include <Metadata.h>
 
+#include <coreinit/_time.h>
 
 #define TEST_FFL
 //#define TEST_RFL
@@ -3154,4 +3155,10 @@ TEST_CASE("FFL_init_init_do") {
     input.press('a');
     _menu->update(&input);
     test_deinitMiiRepos();
+}
+
+TEST_CASE("OSGetTime") {
+
+    printf("%016lx\n",OSGetTime());
+
 }

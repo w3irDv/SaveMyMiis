@@ -108,7 +108,8 @@ Offset  | Lenght| Description
 4       |2      |  "5" Major?
 6       |2      |  "1" Minor?
 8       |8      | unknown
-0x10    |8      | Update Timestamp: ($10^{-8}$ secs) since 1/1/2010
+0x10    |8      | Last Update timestamp: "ticks" since 1/1/2000 (OSGetTime()).
+0x18    |4      | Another update counter ?
 0x4000  |0x40 * 3000      | Stadio mii data for each mii
 0x32e00 |0x40 * 12      | Stadio mii data for profile miis
 0x33100 | 8     |  Global Mii number counter, incremented every time a mii is created
@@ -129,5 +130,7 @@ Offset  | Lenght| Description
 0x10    | 0xA   | Mii Id
 0xA     | 2     | Slot assignned in screen, counting from profile miis, that always appear first
 0xC     | 1     | Mii Pose, different ones from 0 to 0xe, repeating poses from then 
+
+Length: 0x40
 
 No idea what the rest of the data is used for ...
