@@ -90,7 +90,7 @@ Offset  | Lenght| Description
 0       | 4     | 'Magic' header FFFOC
 4       | 4     | Incremental counter (updates)
 8       | 0x5C * 3000  | Array of Mii Data
-0x43628 | 0xA * 50  | Favorite section. Array of MiiId of the favorite miis
+0x43628 | 0xA * 50  | Favorite section. Array of MiiId of the favorite miis. If the Mii Id is not already in stadio.sav, Mii Maker will delete it from this section.
 0x4383E |2       |CRC16 from 0x0 to 0x4383D 
 
 Lenght: 0x43840
@@ -107,18 +107,20 @@ Offset  | Lenght| Description
 0       |4      | 'Magic' MSU\0?
 4       |2      |  "5" Major?
 6       |2      |  "1" Minor?
-8       |8      | unknown
 0x10    |8      | Last Update timestamp: "ticks" since 1/1/2000 (OSGetTime()).
-0x18    |4      | Another update counter ?
+0x18    |4      | Another update counter
+0x1C    |1      | If 0, initial welcome screens are shown. If 1, they are skipped
+0x40    |1      | 0/1 to enable/disable message "You can save up too 3000 miis.." after you select  "Select Mii" option.
+0x43    |1      | 0/1 to enable/disable message "Choose features to create ..."
+0x43    |1      | 0/1 to enable/disable message "Mii characters with inappropriate names ..."
 0x4000  |0x40 * 3000      | Stadio mii data for each mii
 0x32e00 |0x40 * 12      | Stadio mii data for profile miis
 0x33100 | 8     |  Global Mii number counter, incremented every time a mii is created
 0x33108 | 8     |  Global Update counter, incremented every time a mii is updated
 0x33110 | 4     |  Maximum number of miis concurrently "alive" in any point of time (not including profile ones)
+0x33117 | 1     | Seems to be always initialized to 0x3B
 
 Length: 0x34000
-
-No idea what the rest of the data is used for ...
 
 
 ### Stadio mii data 
@@ -126,11 +128,10 @@ No idea what the rest of the data is used for ...
 Offset  | Lenght| Description
 --------|-------|-------------
 0       | 8     | Mii number assigned when the mii was created 
-8       | 8     | Update number of the last modification
+8       | 8     | (Global) Update number of the last modification
 0x10    | 0xA   | Mii Id
-0xA     | 2     | Slot assignned in screen, counting from profile miis, that always appear first
-0xC     | 1     | Mii Pose, different ones from 0 to 0xe, repeating poses from then 
+0x1A    | 2     | Frame asigned in Mii Makers frames screen, counting from profile miis, that always appear first
+0x1C    | 1     | Mii Pose, different ones from 0 to 0xe, repeating poses from then 
+0x1E    | 1     | Controls shining stars over a Mii when entering Mii Maker frames screen: 0 -> no stars, 1 -> green stars (after modification) , 2 -> yellow stars (after creation) 
 
 Length: 0x40
-
-No idea what the rest of the data is used for ...
