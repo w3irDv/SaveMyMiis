@@ -90,7 +90,7 @@ Offset  | Lenght| Description
 0       | 4     | 'Magic' header FFFOC
 4       | 4     | Incremental counter (updates)
 8       | 0x5C * 3000  | Array of Mii Data
-0x43628 | 0xA * 50  | Favorite section. Array of MiiId of the favorite miis. If the Mii Id is not already in stadio.sav, Mii Maker will delete it from this section.
+0x43628 | 0xA * 50  | Favorite section. Array of MiiId of the favorite miis. If the Mii Id is not already in `stadio.sav`, Mii Maker will delete it from this section.
 0x4383E |2       |CRC16 from 0x0 to 0x4383D 
 
 Lenght: 0x43840
