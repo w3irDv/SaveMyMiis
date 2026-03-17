@@ -24,7 +24,7 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 # The -MMD and -MP flags together generate Makefiles for us!
 # These files will have .d instead of .o as the output.
-CGLAGS := $(INC_FLAGS) -MMD -MP -std=gnu2x -g -fsanitize=undefined -Wall -Werror -Wextra -ffunction-sections
+CFLAGS := $(INC_FLAGS) -MMD -MP -std=gnu2x -g -fsanitize=undefined -Wall -Werror -Wextra -ffunction-sections
 CPPFLAGS := $(INC_FLAGS) -MMD -MP -std=gnu++20 -g -fsanitize=undefined -Wall -Werror -Wextra -ffunction-sections -fpermissive
 
 LDFLAGS := -ljansson -fsanitize=undefined
@@ -36,7 +36,7 @@ $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 # Build step for C source
 $(BUILD_DIR)/%.c.o: %.c
 	mkdir -p $(dir $@)
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Build step for C++ source
 $(BUILD_DIR)/%.cpp.o: %.cpp
