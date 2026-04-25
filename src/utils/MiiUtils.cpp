@@ -130,10 +130,12 @@ set_repos:
     // STADIO
     MiiRepos["FFL"]->setStadioSav(MiiStadios["FFL_ACCOUNT"]);
     MiiRepos["ACCOUNT"]->setStadioSav(MiiStadios["FFL_ACCOUNT"]);
+    MiiStadios["FFL_ACCOUNT"]->setFileRepo(MiiRepos["FFL"]);
     MiiStadios["FFL_ACCOUNT"]->setAccountRepo(MiiRepos["ACCOUNT"]);
 
     MiiRepos["FFL_C"]->setStadioSav(MiiStadios["FFL_C_ACCOUNT_C"]);
     MiiRepos["ACCOUNT_C"]->setStadioSav(MiiStadios["FFL_C_ACCOUNT_C"]);
+    MiiStadios["FFL_C_ACCOUNT_C"]->setFileRepo(MiiRepos["FFL_C"]);
     MiiStadios["FFL_C_ACCOUNT_C"]->setAccountRepo(MiiRepos["ACCOUNT_C"]);
 
     // Owners

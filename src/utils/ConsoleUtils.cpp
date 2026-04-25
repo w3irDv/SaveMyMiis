@@ -107,8 +107,8 @@ bool Console::promptConfirm(Style st, const std::string &question) {
         default:
             msg = msg2;
     }
-    //if (st & ST_WIPE) // for wipe bakupSet operation, we will ask that the user press X
-    //    msg = msg3;
+    if (st & ST_WIPE) // for wipe bakupSet operation, we will ask that the user press X
+        msg = msg3;
     //if (st & ST_WARNING || st & ST_WIPE) {
     //    DrawUtils::clear(COLOR_BG_WR);
     //} else if (st & ST_ERROR) {

@@ -14,5 +14,5 @@ path_rfl_Stage=mii_repos/mii_repo_RFL_Stage
 #
 # ACCOUNT PATHS
 #path_account=/mnt/c/Users/XXXX/cemu/mlc01/usr/save/system/act
-path_account=mii_repos/mii_repo_ACCOUNT
+path_account=mii_repos/mii_repo_ACCOUNTc
 path_account_Stage=mii_repos/mii_repo_ACCOUNT_Stage

@@ -171,8 +171,8 @@ bool test_initMiiRepos() {
     if (FSUtils::checkEntry(pathConfig["path_rfl_Stage"].c_str()) == 0)
         FSUtils::createFolder(pathConfig["path_rfl_Stage"].c_str());
 
-    if (FSUtils::checkEntry(pathConfig["path_account"].c_str()) == 0)
-        FSUtils::createFolder(pathConfig["path_account"].c_str());
+    //if (FSUtils::checkEntry(pathConfig["path_account"].c_str()) == 0)
+    //    FSUtils::createFolder(pathConfig["path_account"].c_str());
 
     if (FSUtils::checkEntry(pathConfig["path_account_Stage"].c_str()) == 0)
         FSUtils::createFolder(pathConfig["path_account_Stage"].c_str());
@@ -200,6 +200,7 @@ bool test_initMiiRepos() {
     MiiUtils::MiiRepos["FFL"]->setStadioSav(MiiUtils::MiiStadios["FFL_ACCOUNT"]);
     MiiUtils::MiiRepos["ACCOUNT"]->setStadioSav(MiiUtils::MiiStadios["FFL_ACCOUNT"]);
     MiiUtils::MiiStadios["FFL_ACCOUNT"]->setAccountRepo(MiiUtils::MiiRepos["ACCOUNT"]);
+    MiiUtils::MiiStadios["FFL_ACCOUNT"]->setFileRepo(MiiUtils::MiiRepos["FFL"]);
 
 #ifdef TEST_RFL
     MiiUtils::MiiRepos["REPO1"] = MiiUtils::MiiRepos["RFL"];
