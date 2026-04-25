@@ -8,13 +8,9 @@
 #include <utils/StringUtils.h>
 #include <vector>
 
-//#define MAX_PROMPT_WIDTH 64 * 12
-#define MAX_PROMPT_WIDTH 64
-
-
-bool replace(std::string& str, const std::string& from, const std::string& to) {
+bool replace(std::string &str, const std::string &from, const std::string &to) {
     size_t start_pos = str.find(from);
-    if(start_pos == std::string::npos)
+    if (start_pos == std::string::npos)
         return false;
     str.replace(start_pos, from.length(), to);
     return true;
@@ -64,9 +60,9 @@ void Console::showMessage(Style St, const char *message, ...) {
             //int x = 31 - (maxLineWidth / 24);
             //x = (x < -X_OFFSET) ? -X_OFFSET : x;
 
-            replace(formatted_message,"\\ue000","'a'");
-            replace(formatted_message,"\\ue001","'b'");
-            replace(formatted_message,"\\ue003","'y'");
+            replace(formatted_message, "\\ue000", "'a'");
+            replace(formatted_message, "\\ue001", "'b'");
+            replace(formatted_message, "\\ue003", "'y'");
 
             printf("%s\n", formatted_message.c_str());
             //DrawUtils::print((x + X_OFFSET) * 12, (initialYPos + Y_OFFSET + 4 + nLines) * 24, formatted_message.c_str());
@@ -88,7 +84,7 @@ void Console::showMessage(Style St, const char *message, ...) {
         std::string key;
         std::cin >> key;
     } else if (St & ST_SHOW)
-        sleep(0);//sleep(DEFAULT_ERROR_WAIT);
+        sleep(0); //sleep(DEFAULT_ERROR_WAIT);
     else if (St & ST_DEBUG)
         sleep(0);
 }
@@ -270,20 +266,20 @@ void Console::consolePrintPos([[maybe_unused]] int x, [[maybe_unused]] int y, co
     //y += Y_OFFSET;
 
     std::string spaces{};
-    for (int space = 0; space < x;space++) {
+    for (int space = 0; space < x; space++) {
         spaces += " ";
     }
     va_list va;
     va_start(va, format);
     if ((vasprintf(&tmp, format, va) >= 0) && (tmp != nullptr))
         //DrawUtils::print((x + X_OFFSET) * 12, (y + 1) * 24, tmp);
-        printf("%s%s\n", spaces.c_str(),tmp);
+        printf("%s%s\n", spaces.c_str(), tmp);
     va_end(va);
     if (tmp != nullptr)
         free(tmp);
 }
 
-void Console::consolePrintPosAutoFormat([[maybe_unused]] int x, [[maybe_unused]] int y, const char *format, ...) {
+void Console::consolePrintPosAutoFormat([[maybe_unused]] int x, [[maybe_unused]] int y, size_t max_prompt_width, [[maybe_unused]] size_t vertical_line_space, const char *format, ...) {
     char *tmp = nullptr;
     //y += Y_OFFSET;
 
@@ -293,7 +289,7 @@ void Console::consolePrintPosAutoFormat([[maybe_unused]] int x, [[maybe_unused]]
         size_t nLines = 0;
         size_t maxLineWidth = 0;
         std::string formatted_message{};
-        splitMessage(tmp, formatted_message, maxLineWidth, nLines);
+        splitMessage(tmp, formatted_message, maxLineWidth, nLines, max_prompt_width);
         //DrawUtils::print((x + X_OFFSET) * 12, (y + 1) * 24, formatted_message.c_str());
         printf("%s\n", formatted_message.c_str());
     }
@@ -375,7 +371,7 @@ size_t stringWidth(const std::string &word) {
 }
 
 //! split string in multiple lines, trying not to split words
-void Console::splitMessage(const char *tmp, std::string &formatted_message, size_t &maxLineWidth, size_t &nLines) {
+void Console::splitMessage(const char *tmp, std::string &formatted_message, size_t &maxLineWidth, size_t &nLines, size_t max_prompt_width /* = MAX_PROMPT_WIDTH */) {
 
     std::string splitted;
     std::stringstream message_ss(tmp);
@@ -393,14 +389,14 @@ void Console::splitMessage(const char *tmp, std::string &formatted_message, size
         while (getline(splitted_ss, word, ' ')) {
             size_t word_width = stringWidth(word);
             last_line_width += word_width;
-            if (last_line_width + whitespace_width <= MAX_PROMPT_WIDTH) {
+            if (last_line_width + whitespace_width <= max_prompt_width) {
                 if (!multiline.empty())
                     last_line_width += whitespace_width;
                 multiline += multiline.empty() ? word : " " + word;
                 maxLineWidth = last_line_width > maxLineWidth ? last_line_width : maxLineWidth;
             } else {
                 last_line_width -= word_width;
-                if (word_width > MAX_PROMPT_WIDTH) {
+                if (word_width > max_prompt_width) {
                     std::string splitted_word;
                     size_t total_cp_width = 0;
                     for (unsigned i = 0; i < word.length();) {
@@ -417,13 +413,13 @@ void Console::splitMessage(const char *tmp, std::string &formatted_message, size
                         i += cplen;
                         size_t current_cp_width = stringWidth(current_cp);
                         total_cp_width += current_cp_width;
-                        if (total_cp_width <= MAX_PROMPT_WIDTH) {
+                        if (total_cp_width <= max_prompt_width) {
                             splitted_word += current_cp;
                             maxLineWidth = total_cp_width > maxLineWidth ? total_cp_width : maxLineWidth;
                         } else {
                             splitted_word += "\n" + current_cp;
                             total_cp_width = current_cp_width;
-                            maxLineWidth = MAX_PROMPT_WIDTH;
+                            maxLineWidth = max_prompt_width;
                             nLines++;
                         }
                     }

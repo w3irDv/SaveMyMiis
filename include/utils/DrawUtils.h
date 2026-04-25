@@ -11,6 +11,8 @@
 #define X_OFFSET      2
 #define Y_OFFSET      1
 
+#define WIDE_LINE_SPACE 30
+#define NARROW_LINE_SPACE 24
 union Color {
     explicit Color(uint32_t color) {
         this->color = color;
